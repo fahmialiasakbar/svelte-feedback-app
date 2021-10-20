@@ -1,14 +1,20 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
     import Card from './Card.svelte'
     export let item
-    console.log(item)
+    
+    const dispatch = createEventDispatcher()
+    
+    const handeDelete = (itemId) => {
+        dispatch('delete-feedback', itemId)
+    }
 </script>
 
 <Card>
     <div class="num-display">
         {item.rating}
     </div>
-    <button class="close">X</button>
+    <button class="close" on:click={() => {handeDelete(item.id)}}>X</button>
     <p class="text-display">
         {item.text}
     </p>
